@@ -7,6 +7,7 @@ root = Tk()
 # Giving the window a title
 root.title("Maori Numbers and Colours Quiz")
 
+
 # Setting the window size
 root.geometry("1000x600")
 root.maxsize(1200, 650)
