@@ -1,6 +1,5 @@
-"""Version 1.1 of Player details for Maori Numbers and Colours Quiz
-Setting up the welcome screen to include the design and inputs for the player's details
-In this version the widgets are placed using .grid()"""
+"""Version 2 of Player details for Maori Numbers and Colours Quiz
+Making it so that only an integer can be entered as an 'age' input"""
 
 
 from tkinter import *
