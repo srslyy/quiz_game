@@ -2,13 +2,15 @@
 Setting up the welcome screen and start button"""
 
 from tkinter import *
-step = 0
 
 
 def start_quiz():
     root.destroy()
 
     win = Tk()
+    win.geometry("1000x600")
+    win.maxsize(1200, 650)
+    win.title("Level 1")
     win.mainloop()
 
 

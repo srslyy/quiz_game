@@ -13,7 +13,7 @@ username_label.place(x=30, y=50)
 email_label = Label(root, text="Email:")
 email_label.place(x=30, y=90)
 
-password_label= Label(root, text="Password:")
+password_label = Label(root, text="Password:")
 password_label.place(x=30, y=130)
 
 # set up and position entry boxes - to the right of labels
