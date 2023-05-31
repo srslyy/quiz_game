@@ -5,14 +5,23 @@ Making it so that only an integer can be entered as an 'age' input"""
 from tkinter import *
 
 
-# For testing purposes
-def comment():
-    global name
-    global age
-    string1 = name.get()
-    string2 = age.get()
-    print(string1)
-    print(string2)
+class Player:
+    def __init__(self, master, name):
+        self.player_name = name.get()
+        player_list.append(self)
+
+    # to test player list
+    def player_details(self):
+        print(self.player_name)
+
+
+# print list of books
+def print_info():
+    for player in player_list:
+        player.player_details()
+
+
+player_list = []
 
 
 def start_quiz():
@@ -40,22 +49,16 @@ welcome = Label(root, bg="orange", fg="black", text="WELCOME", font=("Calibri", 
 welcome.grid(row=2, column=1, columnspan=2, pady=20)
 
 # Start button - calls on function that closes window and opens the next
-startButton = Button(root, bg="dark orange", fg="black", text="START", width=10, height=1, command=comment,
+startButton = Button(root, bg="dark orange", fg="black", text="START", width=10, height=1, command=start_quiz,
                      font=("Calibri", 20))
-startButton.grid(row=5, column=1, columnspan=2, pady=70)
+startButton.grid(row=6, column=1, columnspan=2, pady=70)
 
 # Entering player details
 name_label = Label(root, bg="orange", text="Player Name:", font=("Calibri", 15))
 name_label.grid(row=3, sticky=W, column=1, padx=10)
 
-age_label = Label(root, bg="orange", text="Player Age:", font=("Calibri", 15))
-age_label.grid(row=4, sticky=W, column=1, padx=10)
-
 name = Entry(root, width=45)
 name.grid(row=3, column=2, pady=15)
-
-age = Entry(root, width=45)
-age.grid(row=4, column=2, pady=15)
 
 root.grid_columnconfigure(0, weight=1)
 root.grid_columnconfigure(6, weight=1)
