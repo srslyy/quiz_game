@@ -9,13 +9,16 @@ root = Tk()
 
 
 class MainWindow:
+    # this is the second frame
     def frames(self):
         self.frame1 = Frame(root, width=600, height=480, bg="orange")
         self.frame1.grid(row=0, column=0, sticky="nsew")
         label = Label(self.frame1, text="Hi")
         label.grid(row=1, column=1, columnspan=2)
 
+    # this is the first, main frame
     def __init__(self, master):
+        # this opens the second frame once start button is pressed
         def start_quiz():
             print("Start pressed")
             if len(name.get()) == 0:
@@ -24,6 +27,7 @@ class MainWindow:
                 mainframe.forget()
                 self.frames()
 
+        # this is the first main frame
         mainframe = Frame(master, width=600, height=480, bg="orange")
         mainframe.grid(row=0, column=0, sticky="nsew")
 
@@ -54,6 +58,7 @@ class MainWindow:
         mainframe.grid_columnconfigure(0, weight=1)
         mainframe.grid_columnconfigure(6, weight=1)
 
+        # this is just a regular function for entering the player's name
         def on_return():
             player_name = name.get()
 
