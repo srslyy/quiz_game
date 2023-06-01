@@ -10,7 +10,7 @@ root = Tk()
 
 class MainWindow:
     # this is the second frame
-    def frames(self):
+    def quiz(self):
         self.frame1 = Frame(root, width=600, height=480, bg="orange")
         self.frame1.grid(row=0, column=0, sticky="nsew")
         label = Label(self.frame1, text="Hi")
@@ -25,7 +25,7 @@ class MainWindow:
                 messagebox.showerror("ERROR", "Please enter your name before continuing")
             else:
                 mainframe.forget()
-                self.frames()
+                self.quiz()
 
         # this is the first main frame
         mainframe = Frame(master, width=600, height=480, bg="orange")
