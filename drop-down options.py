@@ -25,6 +25,9 @@ clicked.set("Choose filling...?")
 
 # Send dropdown menu to 'clicked' button above
 choice = OptionMenu(root, clicked, *options)  # includes whole options list
+choice.config(bg="orange", width=30, font=("Calibri", 15))
+choice["menu"].config(bg="orange")
+
 choice.pack()
 
 # Create button, to change label text

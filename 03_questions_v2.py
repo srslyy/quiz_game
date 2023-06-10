@@ -1,5 +1,5 @@
 """Version 2 of Questions for Maori Numbers and Colours Quiz
-Creating the questions, and adding the details and answers into lists"""
+"""
 
 
 from tkinter import *
@@ -9,72 +9,16 @@ root = Tk()
 
 
 class MainWindow:
-    def __init__(self, frame1, q, ans1, ans2, ans3, qn_num):
+    # This is currently just the second frame
+    def __init__(self, frame1):
         self.frame1 = frame1
-        f1 = Frame(root, width=600, height=480, bg="orange")
+        f1 = Frame(root, width=600, height=480, bg="pink")
         f1.grid(row=0, column=0, sticky="nsew")
-        self.qn_num = qn_num
-
-        # Question label
-        self.question = Label(f1, text=q)
-        self.question.grid(row=1)
-
-        # First answer button
-        self.bn1 = Button(f1, text=ans1, command=lambda: self.mark(ans1))
-        self.bn1.grid(row=2)
-
-        # Second answer button
-        self.bn2 = Button(f1, text=ans2, command=lambda: self.mark(ans2))
-        self.bn2.grid(row=3)
-
-        # Third answer button
-        self.bn3 = Button(f1, text=ans3, command=lambda: self.mark(ans3))
-        self.bn3.grid(row=4)
-
-        # Continue button
-        self.cont_bn = Button(f1, text="CONTINUE", command=self.next)
-        self.cont_bn.grid(row=5)
-
-        self.response = Label(f1, text="")
-        self.response.grid(row=6)
-        self.chosen = False
-
-    def mark(self, chosen_ans):
-        self.chosen = True
-        for ans in A_list:
-            if ans[0] == self.qn_num:
-                if chosen_ans == ans[1]:
-                    self.response.config(text="That's right!")
-                else:
-                    self.response.config(text="Sorry that's wrong!")
-
-    def next_bn(self, bn, ans):
-        bn.config(text=ans, command=lambda: self.mark(ans))
-
-    def next(self):
-        if self.chosen is True:
-            self.response.grid_forget()
-            self.qn_num += 1
-
-            for qn in Q_list:
-                if qn[0] == self.qn_num:
-                    self.question.config(text=qn[1])
-                    ans1 = qn[2]
-                    ans2 = qn[3]
-                    ans3 = qn[4]
-                    self.next_bn(self.bn1, ans1)
-                    self.next_bn(self.bn2, ans2)
-                    self.next_bn(self.bn3, ans3)
-            self.chosen = False
-        else:
-            messagebox.showerror("ERROR", "Please choose an answer")
 
 
+# calls the class
 def start_quiz():
-    q_num = 1
-    for qn in Q_list:
-        if qn[0] == q_num:
-            MainWindow(root, qn[1], qn[2], qn[3], qn[4], q_num)
+    MainWindow(root)  # Calls the MainWindow class
 
 
 # this is the first, main frame
@@ -132,19 +76,16 @@ def intro():
             intro_label.grid(row=6, column=1, columnspan=2, pady=15)
 
 
-Q_list = [(1, "Q1 - What is the Maori word for green?", "KOWHAI", "KAKARIKI", "KARAKA"),
-          (2, "Q2 - What is the Maori word for two?", "RIMA", "TORU", "RUA"),
-          (3, "Q3 - What number is ono?", "FOUR", "EIGHT", "SEVEN"),
-          (4, "Q4 - What is the Maori word for blue?", "KAHURANGI", "KARAKA", "KIWIKIWI"),
-          (5, "Q5 - What colour is whero?", "YELLOW", "ORANGE", "RED"),
-          (6, "Q6 - What is the Maori word for five?", "TAHI, WHA, RIMA"),
-          (7, "Q7 - What number is tahi?", "ONE", "TEN", "SIX"),
-          (8, "Q8 - What is the Maori word for pink?", "WHERO", "MAWHERO", "MA"),
-          (9, "Q9 - What is rua + rima = ?", "WHITU", "IWA", "TEKAU"),
-          (10, "Q10 - What colour does whero and kowhai make?", "PURPLE", "ORANGE", "CYAN")]
-
-A_list = [(1, "KAKARIKI"), (2, "RUA"), (3, "EIGHT"), (4, "KAHURANGI"), (5, "RED"),
-          (6, "RIMA"), (7, "ONE"), (8, "MAWHERO"), (9, "WHITU"), (10, "ORANGE")]
+Q_list = [(1, "Q1 - What is the Maori word for green?"),
+          (2, "Q2 - What is the Maori word for two?"),
+          (3, "Q3 - What number is ono?"),
+          (4, "Q4 - What is the Maori word for blue?"),
+          (5, "Q5 - What colour is whero?"),
+          (6, "Q6 - What is the Maori word for five?"),
+          (7, "Q7 - What number is tahi?"),
+          (8, "Q8 - What is the Maori word for pink?"),
+          (9, "Q9 - What is rua + rima = ?"),
+          (10, "Q10 - What colour does whero and kowhai make?")]
 
 
 # Set up of the main window
