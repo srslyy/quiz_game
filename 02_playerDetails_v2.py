@@ -1,5 +1,6 @@
 """Version 2 of Player details for Maori Numbers and Colours Quiz
-Making it so that a name has to be given and if not an error message is given"""
+Making it so that a name has to be given and if not an error message is given
+"""
 
 
 from tkinter import *

@@ -1,5 +1,6 @@
 """Version 2 of Setting up interface for Maori Numbers and Colours Quiz
-Setting up the welcome screen and start button"""
+Setting up the welcome screen and start button
+"""
 
 from tkinter import *
 

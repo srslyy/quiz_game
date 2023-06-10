@@ -1,5 +1,6 @@
 """Version 1.1 of Questions for Maori Numbers and Colours Quiz
-Trialling using a frame instead of a new window for changing pages of the quiz"""
+Trialling using a frame instead of a new window for changing pages of the quiz
+"""
 
 
 from tkinter import *

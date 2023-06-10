@@ -1,5 +1,6 @@
 """Version 1 of Questions for Maori Numbers and Colours Quiz
-Adding in classes and objects or organise the questions"""
+Adding in classes and objects or organise the questions
+"""
 
 
 from tkinter import *

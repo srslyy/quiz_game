@@ -1,4 +1,5 @@
 """Version 2 of Questions for Maori Numbers and Colours Quiz
+Switching from the first frame to second frame
 """
 
 
@@ -12,7 +13,7 @@ class MainWindow:
     # This is currently just the second frame
     def __init__(self, frame1):
         self.frame1 = frame1
-        f1 = Frame(root, width=600, height=480, bg="pink")
+        f1 = Frame(frame1, width=600, height=480, bg="pink")
         f1.grid(row=0, column=0, sticky="nsew")
 
 

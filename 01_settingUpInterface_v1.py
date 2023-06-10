@@ -1,5 +1,6 @@
 """Version 1 of Setting up interface for Maori Numbers and Colours Quiz
-Creating a GUI by importing and using tkinter"""
+Creating a GUI by importing and using tkinter
+"""
 
 from tkinter import *
 root = Tk()
