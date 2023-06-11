@@ -26,7 +26,7 @@ class MainWindow:
         self.next_b.pack()
 
     def next_q(self):
-        print("next")
+        print("next")  # for testing
         self.q_n += 1
 
         for q in Q_list:
@@ -37,7 +37,7 @@ class MainWindow:
 # calls the class
 def start_quiz():
     q_num = 1  # Question number
-    for Q in Q_list:
+    for Q in Q_list: # This is so that the right info is displayed
         if Q[0] == q_num:
             MainWindow(root, q_num, Q[1])  # Calls the MainWindow class
 
