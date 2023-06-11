@@ -26,7 +26,7 @@ def start_quiz():
 def intro():
     # this opens the second frame once start button is pressed
     def start():
-        print("Start pressed")
+        print("Start pressed")  # for testing
         if len(name.get()) == 0:
             messagebox.showerror("ERROR", "Please enter your name before continuing")
         else:
