@@ -13,12 +13,12 @@ class MainWindow:
     # This is currently just the second frame
     def __init__(self, frame1, q_n, q, a1, a2, a3):
         self.frame1 = frame1
-        self.f1 = Frame(frame1, width=600, height=480, bg="orange")
+        self.f1 = Frame(frame1, width=WIDTH, height=HEIGHT, bg="orange")
         self.f1.grid(row=0, column=0, sticky="nsew")
         self.f1.grid_columnconfigure(0, weight=1)
         self.f1.grid_columnconfigure(6, weight=1)
 
-        self.heading = Label(self.f1, bg="dark orange", text="Maori Quiz", font=("Calibri", 40))
+        self.heading = Label(self.f1, bg="dark orange", text="QUIZ_NAME", font=("FONT", 40))
         self.heading.grid(row=1, column=1, columnspan=2, pady=10)
 
         # Options list for dropdown menu
@@ -32,7 +32,7 @@ class MainWindow:
         self.q_n = q_n
 
         # Question label
-        self.question = Label(self.f1, bg="orange", text=q, font=("Calibri", 15, "bold"))
+        self.question = Label(self.f1, bg="orange", text=q, font=("FONT", REG_FONT_SIZE, "bold"))
         self.question.grid(row=2, column=1, columnspan=2, pady=10)
 
         # Dropdown menu comes down from here
@@ -40,18 +40,18 @@ class MainWindow:
         self.box.set("Select Answer")
         # Sends dropdown menu to 'self.box' above
         self.a_menu = OptionMenu(self.f1, self.box, *self.options)
-        self.a_menu.config(bg="dark orange", width=40, font=("Calibri", 12))
+        self.a_menu.config(bg="dark orange", width=40, font=("FONT", 12))
         self.a_menu.grid(row=3, column=1, columnspan=2, pady=40)
-        self.a_menu["menu"].config(bg="dark orange", font=("Calibri", 12))
+        self.a_menu["menu"].config(bg="dark orange", font=("FONT", 12))
 
         # Submit button
         self.submit = Button(self.f1, text="SUBMIT", bg="dark orange", width=10, height=1,
-                             command=self.check_ans, font=("Calibri", 18))
+                             command=self.check_ans, font=("FONT", 18))
         self.submit.grid(row=4, column=1, pady=30)
 
         # Next button
         self.next_b = Button(self.f1, text="NEXT", bg="dark orange", width=10, height=1,
-                             command=self.next_q, font=("Calibri", 18))
+                             command=self.next_q, font=("FONT", 18))
         self.next_b.grid(row=4, column=2)
 
         # Response labels
@@ -65,6 +65,7 @@ class MainWindow:
 
     def check_ans(self):
         selected_ans = self.box.get()
+        self.a_menu.config(state="disabled")
         for q in Q_list:
             if q[0] == self.q_n:
                 if selected_ans == q[A_list[self.q_n - 1]]:
@@ -73,7 +74,6 @@ class MainWindow:
                     self.prompt.grid(row=6, column=1, columnspan=2, pady=10)
                     self.selected = True
                     self.score += 1
-                    print("right")  # for testing
                 elif selected_ans == "Select Answer":
                     error()
                     self.selected = False
@@ -94,8 +94,9 @@ class MainWindow:
             self.q_n += 1
             self.a_menu.grid_forget()
             self.box.set("Select Answer")
+            self.a_menu.config(state="normal")
 
-            if self.q_n > 10:
+            if self.q_n > TOTAL_Q_NUM:
                 self.end()
             else:
                 # Changing question in label, and answer options in the drop-down menu
@@ -104,9 +105,9 @@ class MainWindow:
                         self.question.config(text=q[1])
                         self.options = [q[2], q[3], q[4]]
                         self.a_menu = OptionMenu(self.f1, self.box, *self.options)
-                        self.a_menu.config(bg="dark orange", width=40, font=("Calibri", 12))
+                        self.a_menu.config(bg="dark orange", width=40, font=("FONT", 12))
                         self.a_menu.grid(row=3, column=1, columnspan=2, pady=40)
-                        self.a_menu["menu"].config(bg="dark orange", font=("Calibri", 12))
+                        self.a_menu["menu"].config(bg="dark orange", font=("FONT", 12))
                         self.selected = False
         else:
             error()
@@ -121,7 +122,7 @@ class MainWindow:
         end.grid_columnconfigure(0, weight=1)
         end.grid_columnconfigure(6, weight=1)
 
-        heading = Label(end, bg="dark orange", text="Maori Quiz", font=("Calibri", 40))
+        heading = Label(end, bg="dark orange", text="QUIZ_NAME", font=("FONT", 40))
         heading.grid(row=1, column=1, pady=10)
 
         # So that the score can be viewed
@@ -150,10 +151,7 @@ def check(end_frame):
 
     if ask == "yes":
         end_frame.destroy()  # Close the end frame
-        print("yes clicked")
         exit()
-    else:  # for testing
-        print("no clicked")
 
 
 # Makes sure the user does want to restart the quiz
@@ -177,7 +175,7 @@ def start_quiz(end_frame):
             MainWindow(root, q_num, Q[1], Q[2], Q[3], Q[4])  # Calls the MainWindow class
 
 
-# this is the first, main frame
+# this is the first frame
 def intro():
     # this opens the second frame once start button is pressed
     def start():
@@ -189,27 +187,28 @@ def intro():
 
     # this is the first main frame
     master = root
-    mainframe = Frame(master, width=600, height=480, bg="orange")
+    mainframe = Frame(master, width=WIDTH, height=HEIGHT, bg="orange")
     mainframe.grid(row=0, column=0, sticky="nsew")
 
     # Creating the design for the welcome screen
-    heading = Label(mainframe, bg="dark orange", text="Maori Quiz", font=("Calibri", 40))
+    heading = Label(mainframe, bg="dark orange", text="QUIZ_NAME", font=("FONT", 40))
     heading.grid(row=1, column=1, columnspan=2, pady=10)
 
-    welcome = Label(mainframe, bg="orange", text="WELCOME", font=("Calibri", 30, "bold"))
+    welcome = Label(mainframe, bg="orange", text="WELCOME", font=("FONT", 30, "bold"))
     welcome.grid(row=2, column=1, columnspan=2)
 
     # Start button - calls on function that closes window and opens the next
     start_button = Button(mainframe, bg="dark orange", text="START", width=10,
-                          height=1, command=start, font=("Calibri", 20))
+                          height=1, command=start, font=("FONT", 20))
     start_button.grid(row=5, column=1, columnspan=2, pady=40)
 
     # Entering player details
-    name_label = Label(mainframe, bg="orange", text="Player Name:", font=("Calibri", 15))
+    name_label = Label(mainframe, bg="orange", text="Player Name:", font=("FONT", REG_FONT_SIZE))
     name_label.grid(row=3, sticky=W, column=1, padx=10)
 
     # to ensure the player presses enter before start
-    instructions = Label(mainframe, bg="orange", font=("Courier New", 15), text="PRESS ENTER TO CONFIRM NAME")
+    instructions = Label(mainframe, bg="orange", font=("Courier New", REG_FONT_SIZE),
+                         text="PRESS ENTER TO CONFIRM NAME")
     instructions.grid(row=4, column=1, columnspan=2)
 
     name = Entry(mainframe, width=45)
@@ -226,9 +225,19 @@ def intro():
         if len(player_name) == 0:
             messagebox.showerror("ERROR", "Please enter your name before continuing")
         else:
-            intro_label = Label(mainframe, bg="orange", font=("Calibri", 15),
+            intro_label = Label(mainframe, bg="orange", font=("FONT", REG_FONT_SIZE),
                                 text="Hi " + player_name + ", press start to continue")
             intro_label.grid(row=6, column=1, columnspan=2, pady=15)
+
+
+# Constants
+QUIZ_NAME = "Maori Quiz"
+FONT = "Calibri"
+REG_FONT_SIZE = 15
+WIDTH = "600"
+HEIGHT = "480"
+
+TOTAL_Q_NUM = 10
 
 
 # Questions and Answer options list
