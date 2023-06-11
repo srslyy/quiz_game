@@ -1,5 +1,5 @@
-"""Version 2 of Maori Numbers and Colours Quiz
-Fixing all bugs, adding constants, and getting rid of print statements
+"""Version 1 of Maori Numbers and Colours Quiz
+Updating from Usability testing
 """
 
 
@@ -18,7 +18,7 @@ class MainWindow:
         self.f1.grid_columnconfigure(0, weight=1)
         self.f1.grid_columnconfigure(6, weight=1)
 
-        self.heading = Label(self.f1, bg="dark orange", text="QUIZ_NAME", font=("FONT", 40))
+        self.heading = Label(self.f1, bg=B_COLOUR, text="QUIZ_NAME", font=("FONT", 40))
         self.heading.grid(row=1, column=1, columnspan=2, pady=10)
 
         # Options list for dropdown menu
@@ -40,17 +40,17 @@ class MainWindow:
         self.box.set("Select Answer")
         # Sends dropdown menu to 'self.box' above
         self.a_menu = OptionMenu(self.f1, self.box, *self.options)
-        self.a_menu.config(bg="dark orange", width=40, font=("FONT", 12))
+        self.a_menu.config(bg=B_COLOUR, width=40, font=("FONT", 12))
         self.a_menu.grid(row=3, column=1, columnspan=2, pady=40)
-        self.a_menu["menu"].config(bg="dark orange", font=("FONT", 12))
+        self.a_menu["menu"].config(bg=B_COLOUR, font=("FONT", 12))  # Changes colour and font of drop-down options
 
         # Submit button
-        self.submit = Button(self.f1, text="SUBMIT", bg="dark orange", width=10, height=1,
+        self.submit = Button(self.f1, text="SUBMIT", bg=B_COLOUR, width=10, height=1,
                              command=self.check_ans, font=("FONT", 18))
         self.submit.grid(row=4, column=1, pady=30)
 
         # Next button
-        self.next_b = Button(self.f1, text="NEXT", bg="dark orange", width=10, height=1,
+        self.next_b = Button(self.f1, text="NEXT", bg=B_COLOUR, width=10, height=1,
                              command=self.next_q, font=("FONT", 18))
         self.next_b.grid(row=4, column=2)
 
@@ -105,9 +105,9 @@ class MainWindow:
                         self.question.config(text=q[1])
                         self.options = [q[2], q[3], q[4]]
                         self.a_menu = OptionMenu(self.f1, self.box, *self.options)
-                        self.a_menu.config(bg="dark orange", width=40, font=("FONT", 12))
+                        self.a_menu.config(bg=B_COLOUR, width=40, font=("FONT", 12))
                         self.a_menu.grid(row=3, column=1, columnspan=2, pady=40)
-                        self.a_menu["menu"].config(bg="dark orange", font=("FONT", 12))
+                        self.a_menu["menu"].config(bg=B_COLOUR, font=("FONT", 12))
                         self.selected = False
         else:
             error()
@@ -122,26 +122,26 @@ class MainWindow:
         end.grid_columnconfigure(0, weight=1)
         end.grid_columnconfigure(6, weight=1)
 
-        heading = Label(end, bg="dark orange", text="QUIZ_NAME", font=("FONT", 40))
+        heading = Label(end, bg=B_COLOUR, text="QUIZ_NAME", font=("FONT", 40))
         heading.grid(row=1, column=1, pady=10)
 
         # So that the score can be viewed
-        stats = Button(end, bg="dark orange", width=20, height=2, text="VIEW SCORE",
+        stats = Button(end, bg=B_COLOUR, width=20, height=2, text="VIEW SCORE",
                        command=lambda: display_score(end, self.score))
         stats.grid(row=2, column=1, pady=30)
 
         # Restart button
-        restart = Button(end, bg="dark orange", width=20, height=2, text="RESTART", command=lambda: confirm(end))
+        restart = Button(end, bg=B_COLOUR, width=20, height=2, text="RESTART", command=lambda: confirm(end))
         restart.grid(row=3, column=1, pady=30)
 
         # Quit quiz button
-        close = Button(end, bg="dark orange", width=20, height=2, text="EXIT PROGRAM", command=lambda: check(end))
+        close = Button(end, bg=B_COLOUR, width=20, height=2, text="EXIT PROGRAM", command=lambda: check(end))
         close.grid(row=4, column=1, pady=30)
 
 
 def display_score(end_frame, score):
     # Displaying the score
-    total_score = Label(end_frame, bg="dark orange", text=f"You got a score of {score}/10!", font=30)
+    total_score = Label(end_frame, bg=B_COLOUR, text=f"You got a score of {score}/10!", font=30)
     total_score.grid(row=5, column=1, pady=10)
 
 
@@ -179,7 +179,6 @@ def start_quiz(end_frame):
 def intro():
     # this opens the second frame once start button is pressed
     def start():
-        print("Start pressed")  # for testing
         if len(name.get()) == 0:
             messagebox.showerror("ERROR", "Please enter your name before continuing")
         else:
@@ -187,27 +186,27 @@ def intro():
 
     # this is the first main frame
     master = root
-    mainframe = Frame(master, width=WIDTH, height=HEIGHT, bg="orange")
+    mainframe = Frame(master, width=WIDTH, height=HEIGHT, bg=BG_COLOUR)
     mainframe.grid(row=0, column=0, sticky="nsew")
 
     # Creating the design for the welcome screen
-    heading = Label(mainframe, bg="dark orange", text="QUIZ_NAME", font=("FONT", 40))
+    heading = Label(mainframe, bg=B_COLOUR, text="QUIZ_NAME", font=("FONT", 40))
     heading.grid(row=1, column=1, columnspan=2, pady=10)
 
-    welcome = Label(mainframe, bg="orange", text="WELCOME", font=("FONT", 30, "bold"))
+    welcome = Label(mainframe, bg=BG_COLOUR, text="WELCOME", font=("FONT", 30, "bold"))
     welcome.grid(row=2, column=1, columnspan=2)
 
     # Start button - calls on function that closes window and opens the next
-    start_button = Button(mainframe, bg="dark orange", text="START", width=10,
-                          height=1, command=start, font=("FONT", 20))
+    start_button = Button(mainframe, bg=B_COLOUR, text="START", width=10,
+                          height=1, command=lambda: start(), font=("FONT", 20))
     start_button.grid(row=5, column=1, columnspan=2, pady=40)
 
     # Entering player details
-    name_label = Label(mainframe, bg="orange", text="Player Name:", font=("FONT", REG_FONT_SIZE))
+    name_label = Label(mainframe, bg=BG_COLOUR, text="Player Name:", font=("FONT", REG_FONT_SIZE))
     name_label.grid(row=3, sticky=W, column=1, padx=10)
 
     # to ensure the player presses enter before start
-    instructions = Label(mainframe, bg="orange", font=("Courier New", REG_FONT_SIZE),
+    instructions = Label(mainframe, bg=BG_COLOUR, font=("Courier New", REG_FONT_SIZE),
                          text="PRESS ENTER TO CONFIRM NAME")
     instructions.grid(row=4, column=1, columnspan=2)
 
@@ -225,7 +224,7 @@ def intro():
         if len(player_name) == 0:
             messagebox.showerror("ERROR", "Please enter your name before continuing")
         else:
-            intro_label = Label(mainframe, bg="orange", font=("FONT", REG_FONT_SIZE),
+            intro_label = Label(mainframe, bg=BG_COLOUR, font=("FONT", REG_FONT_SIZE),
                                 text="Hi " + player_name + ", press start to continue")
             intro_label.grid(row=6, column=1, columnspan=2, pady=15)
 
@@ -236,6 +235,8 @@ FONT = "Calibri"
 REG_FONT_SIZE = 15
 WIDTH = "600"
 HEIGHT = "480"
+BG_COLOUR = "orange"
+B_COLOUR = "dark orange"
 
 TOTAL_Q_NUM = 10
 
