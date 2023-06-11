@@ -1,7 +1,6 @@
-"""Version 5 of Questions for Maori Numbers and Colours Quiz
+"""Version 1 of Scoring for Maori Numbers and Colours Quiz
 Using only needed code to save time
-Testing the responses of the program for when the correct answer is selected,
-wrong answer is selected, or no answer is selected
+Including a score /10 for each correct answer
 """
 
 
@@ -19,6 +18,8 @@ class MainWindow:
         self.f1.pack(fill=BOTH)
 
         self.options = [a1, a2, a3]
+
+        self.score = 0
 
         # Question number
         self.q = q
@@ -52,8 +53,6 @@ class MainWindow:
 
     def check_ans(self):
         selected_ans = self.box.get()
-        print("submit")  # for testing
-        print(selected_ans)  # for testing
         for q in Q_list:
             if q[0] == self.q_n:
                 if selected_ans == q[A_list[self.q_n - 1]]:
@@ -61,6 +60,8 @@ class MainWindow:
                     self.correct.pack()
                     self.prompt.pack()
                     self.selected = True
+                    self.score += 1
+                    print("right")  # for testing
                 elif selected_ans == "Select Answer":
                     error()
                     self.selected = False
@@ -69,27 +70,29 @@ class MainWindow:
                     self.incorrect.pack()
                     self.prompt.pack()
                     self.selected = True
+                    print("wrong")  # for testing
 
     def next_q(self):
         self.correct.forget()
         self.prompt.forget()
         self.incorrect.forget()
-        print("next")  # for testing
 
         if self.selected is True:
             self.q_n += 1
-            print(self.q_n)  # for testing
             self.a_menu.forget()
             self.box.set("Select Answer")
 
-            # Changing question in label, and answer options in the drop-down menu
-            for q in Q_list:
-                if q[0] == self.q_n:
-                    self.question.config(text=q[1])
-                    self.options = [q[2], q[3], q[4]]
-                    self.a_menu = OptionMenu(self.f1, self.box, *self.options)
-                    self.a_menu.pack()
-                    self.selected = False
+            if self.q_n == 11:
+                print("end", self.score)
+            else:
+                # Changing question in label, and answer options in the drop-down menu
+                for q in Q_list:
+                    if q[0] == self.q_n:
+                        self.question.config(text=q[1])
+                        self.options = [q[2], q[3], q[4]]
+                        self.a_menu = OptionMenu(self.f1, self.box, *self.options)
+                        self.a_menu.pack()
+                        self.selected = False
         else:
             error()
 

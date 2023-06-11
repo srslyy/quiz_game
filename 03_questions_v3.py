@@ -1,4 +1,4 @@
-"""Version 2 of Questions for Maori Numbers and Colours Quiz
+"""Version 3 of Questions for Maori Numbers and Colours Quiz
 Using only needed code to save time
 Switching from one question to the next
 """
