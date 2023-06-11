@@ -1,6 +1,6 @@
-"""Version 2 of Scoring for Maori Numbers and Colours Quiz
+"""Version 1 of End Quiz for Maori Numbers and Colours Quiz
 Using only needed code to save time
-Adding a third frame to display the score
+Adding exit quiz and view score buttons
 """
 
 
@@ -83,7 +83,7 @@ class MainWindow:
             self.a_menu.forget()
             self.box.set("Select Answer")
 
-            if self.q_n == 11:
+            if self.q_n > 10:
                 self.end()
             else:
                 # Changing question in label, and answer options in the drop-down menu
@@ -105,20 +105,40 @@ class MainWindow:
         end = Frame(self.frame1, width="600", height="120", bg="blue")
         end.pack(fill=BOTH)
 
-        # Displaying the score
-        total_score = Label(end, text=f"{self.score}/10", font=30)
-        total_score.pack()
+        # So that the score can be viewed
+        stats = Button(end, text="VIEW SCORE", command=lambda: display_score(end, self.score))
+        stats.pack()
+
+        # Quit quiz button
+        close = Button(end, text="EXIT PROGRAM", command=lambda: check(end))
+        close.pack()
+
+
+def display_score(end_frame, score):
+    # Displaying the score
+    total_score = Label(end_frame, text=f"{score}/10", font=30)
+    total_score.pack()
+
+
+def check(end_frame):
+    ask = messagebox.askquestion("CONFIRM CLOSE QUIZ", "Are you sure you want to close the quiz?")
+
+    if ask == "yes":
+        end_frame.destroy()  # Close the end frame
+        print("yes clicked")
+        exit()
+    else:  # for testing
+        print("no clicked")
 
 
 # calls the class
 def start_quiz():
-    q_num = 1  # Question number
+    q_num = 10  # Question number
     for Q in Q_list:  # This is so that the right info is displayed
         if Q[0] == q_num:
             MainWindow(root, q_num, Q[1], Q[2], Q[3], Q[4])  # Calls the MainWindow class
 
 
-# Constants
 def error():
     messagebox.showerror("ERROR", "Sorry, you must select an answer and click submit before continuing")
 
