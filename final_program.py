@@ -1,5 +1,5 @@
-"""Version 1 of Maori Numbers and Colours Quiz
-Updating from Usability testing
+"""Fully working program of Maori Numbers and Colours Quiz
+Includes updates from Usability testing described in ppt
 By Sarah Kan
 11/05/2023
 """
